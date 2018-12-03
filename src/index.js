@@ -1,6 +1,3 @@
-import React from 'react';
-import './index.scss';
-
 const state = {
   a: 1,
   b: 2,
@@ -8,9 +5,11 @@ const state = {
   d: 4,
 };
 
-window.console.log(React.Component, state);
+const getValue = (key) => {
+  return state[key];
+};
 
-const { a, ...rest } = state;
+export {
+  getValue,
+};
 
-window.console.log('a is ', a);
-window.console.log('the rest are ', rest);
