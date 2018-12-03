@@ -55,6 +55,35 @@ module.exports = {
             },
           },
 
+          {
+            test: /\.(js|mjs|jsx)$/,
+            // include: paths.appSrc,
+            exclude: /node_modules/,
+            loader: 'babel-loader',
+            options: {
+              // customize: require('babel-preset-react-app/webpack-overrides'),
+              
+              plugins: [
+                [
+                  require('babel-plugin-named-asset-import'),
+                  {
+                    loaderMap: {
+                      svg: {
+                        ReactComponent: '@svgr/webpack?-prettier,-svgo![path]',
+                      },
+                    },
+                  },
+                ],
+              ],
+              // This is a feature of `babel-loader` for webpack (not Babel itself).
+              // It enables caching results in ./node_modules/.cache/babel-loader/
+              // directory for faster rebuilds.
+              cacheDirectory: true,
+              // Don't waste time on Gzipping the cache
+              cacheCompression: false,
+            },
+          },
+
           // css loader
           {
             test: /\.css$/,

@@ -10,7 +10,7 @@ const state = {
 
 window.console.log(React.Component, state);
 
-// const { a, ..rest) = state;
+const { a, ...rest } = state;
 
-// console.log('a is ', a);
-// console.log('the rest are ', rest);
+window.console.log('a is ', a);
+window.console.log('the rest are ', rest);
