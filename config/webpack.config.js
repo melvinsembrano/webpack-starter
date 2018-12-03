@@ -22,33 +22,69 @@ module.exports = {
   },
 
   module: {
+    strictExportPresence: true,
+
     rules: [
       {
-        test: /\.css$/,
+        parser: {
+          requireEnsure: false,
+        },
+      },
+      {
+        test: /\.js$/,
+        enforce: 'pre',
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../dev',
-            }
+            loader: "eslint-loader",
+            options: {},
           },
-          'css-loader',
+        ],
+      },
+      {
+        oneOf: [
+
+          // "url" loader works like "file" loader except that it embeds assets
+          // smaller than specified limit in bytes as data URLs to avoid requests.
+          // A missing `test` is equivalent to a match.
+          {
+            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: 'media/[name].[hash:8].[ext]',
+            },
+          },
+
+          // css loader
+          {
+            test: /\.css$/,
+            use: [
+              {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  publicPath: '../dev',
+                }
+              },
+              'css-loader',
+            ],
+          },
+
+          {
+            test: /\.(scss|sass)$/,
+            use: [
+              {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  publicPath: '../dev',
+                }
+              },
+              'css-loader',
+              'sass-loader',
+            ],
+          },
         ],
       },
 
-      {
-        test: /\.(scss|sass)$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../dev',
-            }
-          },
-          'css-loader',
-          'sass-loader',
-        ],
-      },
     ],
   }
 
