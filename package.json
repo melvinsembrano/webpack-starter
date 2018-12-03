@@ -1,0 +1,29 @@
+{
+  "name": "webpack-starter",
+  "version": "1.0.0",
+  "description": "Webpack Starter Pack",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --config config/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melvinsembrano/webpack-react-starter-app.git"
+  },
+  "keywords": [
+    "webpack",
+    "builder"
+  ],
+  "author": "Melvin Sembrano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melvinsembrano/webpack-react-starter-app/issues"
+  },
+  "homepage": "https://github.com/melvinsembrano/webpack-react-starter-app#readme",
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
